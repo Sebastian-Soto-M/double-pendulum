@@ -1,0 +1,11 @@
+:host {
+  mat-card-content {
+    padding-top: 16px;
+  }
+  mat-accordion {
+    width: 300px;
+    mat-divider {
+      margin: 16px 0px !important;
+    }
+  }
+}

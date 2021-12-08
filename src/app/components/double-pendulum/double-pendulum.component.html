@@ -1,0 +1,86 @@
+<section fxLayout="row" fxLayoutGap="16px">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ title }}</mat-card-title>
+      <mat-card-subtitle>By Sebastian Soto</mat-card-subtitle>
+      <div fxFlex></div>
+      <button mat-icon-button color="accent" (click)="saveImage()">
+        <mat-icon>save</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div id="{{ canvas_id }}" #canvas_parent></div>
+      <form [formGroup]="options" fxLayout="row" fxLayoutGap="16px">
+        <mat-form-field appearance="fill">
+          <mat-label>Angle in Ball 1</mat-label>
+          <input matInput type="number" [formControl]="angleBall1Control" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Angle in Ball 2</mat-label>
+          <input matInput type="number" [formControl]="angleBall2Control" />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions align="end" fxLayout="row" fxLayoutGap="8px">
+      <a
+        mat-button
+        color="accent"
+        href="https://www.myphysicslab.com/pendulum/double-pendulum-en.html"
+        target="_blank"
+        >Read More</a
+      >
+      <button mat-flat-button color="primary" (click)="refresh()">
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-accordion multi>
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Position</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+        <h3>Blob 1:</h3>
+        <mat-chip-list>
+          <app-info-chip [data]="x1" label="X"></app-info-chip>
+          <app-info-chip [data]="y1" label="Y"></app-info-chip>
+        </mat-chip-list>
+      </div>
+      <mat-divider inset></mat-divider>
+      <div>
+        <h3>Blob 2:</h3>
+        <mat-chip-list>
+          <app-info-chip [data]="x2" label="X"></app-info-chip>
+          <app-info-chip [data]="y2" label="Y"></app-info-chip>
+        </mat-chip-list>
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Acceleration</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+        <h5>
+          BLOB 1:
+          <strong>{{ acceleration1 | number: "2.0-5" }}</strong>
+        </h5>
+        <mat-progress-bar
+          mode="determinate"
+          value="{{ acceleration1 }}"
+        ></mat-progress-bar>
+      </div>
+      <mat-divider></mat-divider>
+      <div>
+        <h5>
+          BLOB 2:
+          <strong>{{ acceleration2 | number: "2.0-5" }}</strong>
+        </h5>
+        <mat-progress-bar
+          mode="determinate"
+          value="{{ acceleration2 }}"
+        ></mat-progress-bar>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</section>
